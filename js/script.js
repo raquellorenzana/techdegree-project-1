@@ -3,8 +3,7 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-
-
+//create variables for html message creation and accessing DOM elements 
 let message = '';
 const getQuoteBox = document.getElementById('quote-box');
 const getLoadQuote = document.getElementById('load-quote')
@@ -23,35 +22,30 @@ const quotes = [
 	{quote: 'It is during our darkest moments that we must focus to see the light.', source: 'Aristotle'}
 ]
 
-const page = document.getElementById
+//array of colors
+const pageColors = ["#f70f26", "#4287f5", "#f5fa64", "#faae3c", "#e1bef7", "#f7a6f1"]
 
-//function to getRandomQuote from quotes array
+//function to select a random quote from the quotes array
 function getRandomQuote() {
-	const upper = quotes.length;
-	const randomIndex = Math.floor( Math.random() * upper );
-	//use random number as an index to get the random quote form the array
+	//create random number
+	const randomIndex = Math.floor( Math.random() * quotes.length );
+	//use the randomIndex to access a random quote from the array
 	const getRandomQuote = quotes[randomIndex];
 	return getRandomQuote;	
 }
 
-//array of colors
-const pageColors = [
-	"#f70f26", 
-	"#4287f5", 
-	"#f5fa64",
-	"#faae3c", 
-	"#e1bef7",
-	"#f7a6f1"
-]
-
 //function to get a random color
 function getRandomColor(){
-	const upper = pageColors.length;
-	const randomColorIndex = Math.floor(Math.random() * upper);
+	const randomColorIndex = Math.floor(Math.random() * pageColors.length);
+		//use the randomColorIndex to access a random color from the array
 	const randomColor = pageColors[randomColorIndex];
 	return randomColor;
 }
 
+//function to change the color of the page
+function changeColor(){
+	document.body.style.backgroundColor = getRandomColor();
+}
 
 //function to reload a quote every 10 seconds
 function intervalQuotes(){
@@ -59,13 +53,14 @@ function intervalQuotes(){
 }
 
 //function to print the quote to the browser
-
 function printQuote() {
 	const quoteInstance = getRandomQuote();
 	message = '<p class="quote">' + quoteInstance.quote + '</p>';
 	message += '<p class="source">' + quoteInstance.source;
-	
-	//if statements checking if objects in array have citation and/or year	
+	/*
+	create if statements checking if objects in array have citation, year or tag properties	
+	and create html for each accordingly
+	*/
 	if(quoteInstance.citation){
 		message += '<span class="citation">' + quoteInstance.citation + '</span>';
 	}
@@ -76,22 +71,17 @@ function printQuote() {
 		message += '<span class="tag">, ' + quoteInstance.tag + '</span>';
 	}
 	message += '</p>'
-	
+	//set html equal to message
 	getQuoteBox.innerHTML = message;
 	
 }
 
-
-function changeColor(){
-	document.body.style.backgroundColor = getRandomColor();
-}
-//call getRandomQuote function
+//call functions
 getRandomQuote();
 intervalQuotes();
 
 //when button is clicked, the printquote function is called
 getLoadQuote.addEventListener("click", printQuote, false);
-
 getLoadQuote.addEventListener("click", changeColor, false);
 
 
