@@ -23,7 +23,7 @@ const quotes = [
 ]
 
 //array of colors
-const pageColors = ["#f70f26", "#4287f5", "#f5fa64", "#faae3c", "#e1bef7", "#f7a6f1"]
+const pageColors = ["#f70f26", "#4287f5", "#f5fa64", "#a6f74f", "#faae3c", "#e1bef7", "#f7a6f1"]
 
 //function to select a random quote from the quotes array
 function getRandomQuote() {
@@ -40,11 +40,6 @@ function getRandomColor(){
 		//use the randomColorIndex to access a random color from the array
 	const randomColor = pageColors[randomColorIndex];
 	return randomColor;
-}
-
-//function to change the color of the page
-function changeColor(){
-	document.body.style.backgroundColor = getRandomColor();
 }
 
 //function to reload a quote every 10 seconds
@@ -68,12 +63,14 @@ function printQuote() {
 		message += '<span class="year">' + quoteInstance.year + '</span>';
 	}
 	if(quoteInstance.tag){
-		message += '<span class="tag">, ' + quoteInstance.tag + '</span>';
+		message += '<span class="tag">' + quoteInstance.tag + '</span>';
 	}
 	message += '</p>'
 	//set html equal to message
 	getQuoteBox.innerHTML = message;
-	
+
+	//change the color of the page
+	document.body.style.backgroundColor = getRandomColor();
 }
 
 //call functions
@@ -82,7 +79,7 @@ intervalQuotes();
 
 //when button is clicked, the printquote function is called
 getLoadQuote.addEventListener("click", printQuote, false);
-getLoadQuote.addEventListener("click", changeColor, false);
+
 
 
 

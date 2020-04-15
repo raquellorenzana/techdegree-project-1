@@ -12,14 +12,6 @@ body {
   padding: 5px;
 }
 
-.blue {
-  background-color: blue;
-}
-
-.red {
-  background-color: red;
-}
-
 header {
   display: flex;
   flex-flow: row wrap;
@@ -119,6 +111,11 @@ h1 {
 }
 
 .year:before {
+  content: ", ";
+  font-style: normal;
+}
+
+.tag:before {
   content: ", ";
   font-style: normal;
 }
